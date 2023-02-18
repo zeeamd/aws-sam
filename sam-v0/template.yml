@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: sam-v0 HTTP API
+
+#Parameters:
+#  Param1Name:
+#    Type: String
+#    Description: Param to use
+
+Globals:
+  Function:
+    Timeout: 5
+    Handler: app.lambda_handler
+    Runtime: python3.9
+
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Events:
+        RootGet:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: get
+
