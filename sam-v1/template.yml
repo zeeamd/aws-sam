@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: sam-v1 HTTP API with Env Vars
+
+Parameters:
+  Env:
+    Type: String
+    AllowedValues:
+      - dev
+      - qa
+    Description: Environment in which the application will be deployed. Allowed values [dev, qa]
+
+Mappings:
+  EnvMapping:
+    dev:
+      LogLevel: DEBUG
+    qa:
+      LogLevel: INFO
+
+Globals:
+  Function:
+    Timeout: 5
+    Handler: app.lambda_handler
+    Runtime: python3.9
+
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Environment:
+        Variables:
+          LOG_LEVEL: !FindInMap [ EnvMapping, !Ref Env, LogLevel ]
+      Events:
+        RootGet:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: get
+

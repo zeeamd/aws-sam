@@ -1,0 +1,24 @@
+version = 0.1
+
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "sam-v10"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-12c0d4wom7vir"
+s3_prefix = "sam-v10"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Env=dev"
+
+[qa]
+[qa.deploy]
+[qa.deploy.parameters]
+stack_name = "sam-v11"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-12c0d4wom7vir"
+s3_prefix = "sam-v11"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+parameter_overrides = "Env=qa"
