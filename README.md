@@ -11,3 +11,12 @@ https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/s
 
 ## select which-api
 https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html
+
+##
+SAM templates will deploy Lambda App
+#
+The first 2 lines of SAM template & CloudFormation stack is
+#
+AWSTemplateFormatVersion: '2010-09-09'
+#
+Transform: AWS::Serverless-2016-10-31
